@@ -21,7 +21,7 @@ fn update_commit() {
         .expect("Failed to execute the commit command");
 
     if !commit_command.status.success() {
-        println!("Error: Failed to commit the file.");
+        println!("Error: Failed to commit the files.");
         exit(1);
     }
 
