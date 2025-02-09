@@ -47,7 +47,7 @@ fn run_git_command(args: &[&str]) -> bool {
 
 // Generate commit message based on Git diff
 fn generate_commit_message() -> String {
-    let api_key = match env::var("Gemini_API_KEY Og") {
+    let api_key = match env::var("Gemini_API_KEY_Og") {
         Ok(key) => key,
         Err(_) => {
             println!("❌ Error: Set GEMINI_API_KEY environment variable.");
