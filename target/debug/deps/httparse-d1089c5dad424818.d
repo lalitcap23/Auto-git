@@ -1,0 +1,12 @@
+/home/lalit/rust/folder/hello/Auto-git/target/debug/deps/libhttparse-d1089c5dad424818.rmeta: /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/iter.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/macros.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/mod.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/swar.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/sse42.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/avx2.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/runtime.rs
+
+/home/lalit/rust/folder/hello/Auto-git/target/debug/deps/httparse-d1089c5dad424818.d: /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/iter.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/macros.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/mod.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/swar.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/sse42.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/avx2.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/runtime.rs
+
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/lib.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/iter.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/macros.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/mod.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/swar.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/sse42.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/avx2.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/httparse-1.10.0/src/simd/runtime.rs:
