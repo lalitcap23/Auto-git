@@ -1,0 +1,11 @@
+/home/lalit/rust/folder/hello/Auto-git/target/release/deps/libtower_layer-f7319a1c24d52112.rmeta: /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/identity.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/layer_fn.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/stack.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/tuple.rs
+
+/home/lalit/rust/folder/hello/Auto-git/target/release/deps/libtower_layer-f7319a1c24d52112.rlib: /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/identity.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/layer_fn.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/stack.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/tuple.rs
+
+/home/lalit/rust/folder/hello/Auto-git/target/release/deps/tower_layer-f7319a1c24d52112.d: /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/identity.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/layer_fn.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/stack.rs /home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/tuple.rs
+
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/lib.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/identity.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/layer_fn.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/stack.rs:
+/home/lalit/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tower-layer-0.3.3/src/tuple.rs:

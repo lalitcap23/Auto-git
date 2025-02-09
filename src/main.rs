@@ -1,7 +1,7 @@
 use std::process::{Command, exit};
 use std::env;
 use reqwest::blocking::Client;
-use serde_json::jsons;
+use serde_json::json;
 
 fn update_commit() {
     // Add all files
@@ -47,7 +47,7 @@ fn run_git_command(args: &[&str]) -> bool {
 
 // Generate commit message based on Git diff
 fn generate_commit_message() -> String {
-    let api_key = match env::var("GEMINI_API_KEY") {
+    let api_key = match env::var("AIzaSyBlQzh0a5jGx04kL4Ww6EbnmsAAmy1aUJE") {
         Ok(key) => key,
         Err(_) => {
             println!("❌ Error: Set GEMINI_API_KEY environment variable.");
@@ -70,7 +70,7 @@ fn generate_commit_message() -> String {
     let prompt = format!("Generate a clear, concise Git commit message for the following changes:\n\n{}", diff_output);
 
     let client = Client::new();
-    let response = client.post(&format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key={}", api_key))
+    let response = client.post(&format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key={}",api_key))
         .json(&json!({
             "contents": [{
                 "parts": [{
