@@ -18,7 +18,7 @@ fn update_commit() {
         .arg("-m")
         .arg(name_generator())
         .output()
-        .expect("Failed to execute the commit command");
+        .expect("Failed to execute the commit commands");
 
     if !commit_command.status.success() {
         println!("Error: Failed to commit the files.");
