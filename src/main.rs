@@ -9,7 +9,7 @@ fn update_commit() {
         .expect("Failed to execute the git add command");
 
     if !add_command.status.success() {
-        println!("Error: Failed to add the files to the remote repo.");
+        println!("Error: Failed to add the files to the remote repo's.");
         exit(1);
     }
 
