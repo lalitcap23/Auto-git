@@ -110,4 +110,6 @@ fn get_current_branch() -> Option<String> {
 
 fn main() {
     update_commit();
+    println!("Remove .env from version control");
+")
 }
