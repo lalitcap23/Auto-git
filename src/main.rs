@@ -4,13 +4,12 @@ use reqwest::blocking::Client;
 use serde_json::json;
 
 fn update_commit() {
-    // Add all files
-    if !run_git_command(&["add", "."]) {
+    if !run_git_command    
+    (&["add", "."]) {
         println!("❌ Error: Failed to add files.");
         exit(1);
     }
 
-    // Generate meaningful commit message
     let commit_message = generate_commit_message();
 
     // Commit changes
@@ -110,6 +109,4 @@ fn get_current_branch() -> Option<String> {
 
 fn main() {
     update_commit();
-    println!("Remove .env from version control");
-")
 }
