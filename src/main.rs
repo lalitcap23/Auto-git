@@ -19,7 +19,6 @@ fn update_commit() {
 
     let branch = get_current_branch().unwrap_or_else(|| "main".to_string());
 
-    // Push the changes to the remote repository
     if !run_git_command(&["push", "origin", &branch]) {
         println!("❌ Error: Failed to push changes.");
         exit(1);
@@ -131,7 +130,6 @@ fn main() {
     }
 
     update_commit();
-    println!("testing the last one ");
     
 
     
