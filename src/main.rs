@@ -17,7 +17,6 @@ fn update_commit() {
         exit(1);
     }
 
-    // Get the current branch dynamically
     let branch = get_current_branch().unwrap_or_else(|| "main".to_string());
 
     // Push the changes to the remote repository
@@ -29,7 +28,6 @@ fn update_commit() {
     println!("✅ Successfully pushed changes to remote repository!");
 }
 
-// Helper function to execute Git commands
 fn run_git_command(args: &[&str]) -> bool {
     let output = Command::new("git")
         .args(args)
@@ -43,7 +41,6 @@ fn run_git_command(args: &[&str]) -> bool {
     true
 }
 
-// Generate a commit message based on the Git diff
 fn generate_commit_message() -> String {
     // Load environment variables from .env file
     dotenv().ok();
@@ -136,5 +133,9 @@ fn main() {
     }
 
     update_commit();
+
+    println!("testing for last time ");
+    println!("check it with the comment outputs  ");
+    
 
 }
