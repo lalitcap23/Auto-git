@@ -81,7 +81,7 @@ fn generate_commit_message() -> String {
     let client = Client::new();
     let response = client
         .post(&format!(
-            "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key={}",
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={}",
             api_key
         ))
         .json(&json!({
