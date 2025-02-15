@@ -42,10 +42,8 @@ fn run_git_command(args: &[&str]) -> bool {
 }
 
 fn generate_commit_message() -> String {
-    // Load environment variables from .env file
     dotenv().ok();
 
-    // Retrieve the Gemini API key from environment variables
     let api_key = match env::var("GEMINI_API_KEY") {
         Ok(key) => key,
         Err(_) => {
@@ -134,8 +132,6 @@ fn main() {
 
     update_commit();
 
-    println!("testing for last time ");
-    println!("check it with the comment outputs  ");
     
 
 }
