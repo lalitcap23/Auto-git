@@ -110,3 +110,4 @@ fn get_current_branch() -> Option<String> {
 fn main() {
     update_commit();
 }
+//test 1
