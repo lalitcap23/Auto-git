@@ -131,6 +131,8 @@ fn main() {
     }
 
     update_commit();
+    println!("testing the last one ");
+    
 
     
 
