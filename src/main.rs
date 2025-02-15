@@ -136,15 +136,5 @@ fn main() {
     }
 
     update_commit();
-    //testing
-    // fn main() {
-    //     // Load environment variables
-    //     dotenv().ok();
-    
-    //     if env::var("GEMINI_API_KEY").is_err() {
-    //         println!("❌ Error: Set GEMINI_API_KEY environment variable.");
-    //         exit(1);
-    //     }
-    
-    //     update_commit();  
+
 }
