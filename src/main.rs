@@ -5,16 +5,13 @@ use serde_json::json;
 use dotenv::dotenv;
 
 fn update_commit() {
-    // Add all changes to the staging area
     if !run_git_command(&["add", "."]) {
         println!("❌ Error: Failed to add files.");
         exit(1);
     }
 
-    // Generate a commit message based on the Git diff
     let commit_message = generate_commit_message();
 
-    // Commit the changes with the generated message
     if !run_git_command(&["commit", "-m", &commit_message]) {
         println!("❌ Error: Failed to commit changes.");
         exit(1);
@@ -149,5 +146,5 @@ fn main() {
     //         exit(1);
     //     }
     
-    //     update_commit(); 
+    //     update_commit();  
 }
