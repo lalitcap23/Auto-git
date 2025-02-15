@@ -2,26 +2,28 @@ use std::process::{Command, exit};
 use std::env;
 use reqwest::blocking::Client;
 use serde_json::json;
+use dotenv::dotenv;
 
 fn update_commit() {
-    if !run_git_command    
-    (&["add", "."]) {
+    // Add all changes to the staging area
+    if !run_git_command(&["add", "."]) {
         println!("❌ Error: Failed to add files.");
         exit(1);
     }
 
+    // Generate a commit message based on the Git diff
     let commit_message = generate_commit_message();
 
-    // Commit changes
+    // Commit the changes with the generated message
     if !run_git_command(&["commit", "-m", &commit_message]) {
         println!("❌ Error: Failed to commit changes.");
         exit(1);
     }
 
-    // Get current branch dynamically
+    // Get the current branch dynamically
     let branch = get_current_branch().unwrap_or_else(|| "main".to_string());
 
-    // Push changes
+    // Push the changes to the remote repository
     if !run_git_command(&["push", "origin", &branch]) {
         println!("❌ Error: Failed to push changes.");
         exit(1);
@@ -39,14 +41,18 @@ fn run_git_command(args: &[&str]) -> bool {
 
     if !output.status.success() {
         eprintln!("❌ Error: {:?}", String::from_utf8_lossy(&output.stderr));
+        return false;
     }
-
-    output.status.success()
+    true
 }
 
-// Generate commit message based on Git diff
+// Generate a commit message based on the Git diff
 fn generate_commit_message() -> String {
-    let api_key = match env::var("Gemini_API_KEY") {
+    // Load environment variables from .env file
+    dotenv().ok();
+
+    // Retrieve the Gemini API key from environment variables
+    let api_key = match env::var("GEMINI_API_KEY") {
         Ok(key) => key,
         Err(_) => {
             println!("❌ Error: Set GEMINI_API_KEY environment variable.");
@@ -54,22 +60,33 @@ fn generate_commit_message() -> String {
         }
     };
 
+    // Get the Git diff of staged changes
     let output = Command::new("git")
         .arg("diff")
         .arg("--staged")
         .output()
-        .expect("❌ Failed to get git diff");
+        .expect("❌ Failed to get Git diff");
 
     let diff_output = String::from_utf8_lossy(&output.stdout);
 
+    // If there are no changes, return a default message
     if diff_output.is_empty() {
         return "Minor updates".to_string();
     }
 
-    let prompt = format!("Generate a clear, concise Git commit message for the following changes:\n\n{}", diff_output);
+    // Create a prompt for the Gemini API
+    let prompt = format!(
+        "Generate a clear, concise Git commit message for the following changes:\n\n{}",
+        diff_output
+    );
 
+    // Send the prompt to the Gemini API
     let client = Client::new();
-    let response = client.post(&format!("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key={}",api_key))
+    let response = client
+        .post(&format!(
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateText?key={}",
+            api_key
+        ))
         .json(&json!({
             "contents": [{
                 "parts": [{
@@ -81,6 +98,11 @@ fn generate_commit_message() -> String {
 
     match response {
         Ok(resp) => {
+            if !resp.status().is_success() {
+                println!("❌ Error: Gemini API returned status code {}", resp.status());
+                return "Updated files".to_string();
+            }
+
             let json_resp: serde_json::Value = resp.json().unwrap_or_else(|_| json!({}));
             json_resp["candidates"]
                 .get(0)
@@ -88,8 +110,8 @@ fn generate_commit_message() -> String {
                 .unwrap_or("Updated files")
                 .to_string()
         }
-        Err(_) => {
-            println!("❌ Error: Failed to get commit message from Gemini API.");
+        Err(err) => {
+            println!("❌ Error: Failed to get commit message from Gemini API: {}", err);
             "Updated files".to_string()
         }
     }
@@ -108,6 +130,13 @@ fn get_current_branch() -> Option<String> {
 }
 
 fn main() {
+    // Load environment variables
+    dotenv().ok();
+
+    if env::var("GEMINI_API_KEY").is_err() {
+        println!("❌ Error: Set GEMINI_API_KEY environment variable.");
+        exit(1);
+    }
+
     update_commit();
 }
-//test 1
