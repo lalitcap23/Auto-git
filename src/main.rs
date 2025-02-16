@@ -71,7 +71,7 @@ fn generate_commit_message() -> String {
         diff_output
     );
 
-    // Send the prompt to the Gemini API
+    // Send the prompt to the Gemini  
     let client = Client::new();
     let response = client
         .post(&format!(
