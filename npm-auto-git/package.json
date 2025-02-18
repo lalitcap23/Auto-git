@@ -1,12 +1,15 @@
 {
   "name": "npm-auto-git",
-  "version": "1.0.1",
-  "main": "index.js",
+  "version": "1.0.3",
+  "description": "Git automation with Rust",
+  "bin": {
+    "auto-git": "./bin/auto-git.js"
+  },
   "scripts": {
+    "postinstall": "curl -L -o ./bin/auto-git https://github.com/lalitcap23/Auto-git/releases/download/1.0.3/Auto-git && chmod +x ./bin/auto-git",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": ""
+  "license": "ISC"
 }
