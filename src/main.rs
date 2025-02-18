@@ -131,7 +131,7 @@ fn main() {
 
     update_commit();
     
-    println!("test the and the binary  in the code so that it can work and creating wrapper ");
+    println!("test the and the binary  in the code so that it ");
 
 
 }
