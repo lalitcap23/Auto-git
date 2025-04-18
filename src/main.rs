@@ -4,27 +4,58 @@ use reqwest::blocking::Client;
 use serde_json::json;
 use dotenv::dotenv;
 
+fn main() {
+    dotenv().ok();
+
+    if env::var("GEMINI_API_KEY").is_err() {
+        println!("❌ Error: Set GEMINI_API_KEY environment variable.");
+        exit(1);
+    }
+
+    update_commit();
+}
+
 fn update_commit() {
+    // Stage all changes
     if !run_git_command(&["add", "."]) {
         println!("❌ Error: Failed to add files.");
         exit(1);
     }
 
-    let commit_message = generate_commit_message();
+    // Check if anything is staged
+    if !has_staged_changes() {
+        println!("❌ No changes staged. Nothing to commit.");
+        exit(1);
+    }
 
+    // Generate commit message
+    let commit_message = generate_commit_message();
+    println!("📦 Commit message: {}", commit_message);
+
+    // Commit
     if !run_git_command(&["commit", "-m", &commit_message]) {
         println!("❌ Error: Failed to commit changes.");
         exit(1);
     }
 
+    // Get current branch
     let branch = get_current_branch().unwrap_or_else(|| "main".to_string());
 
+    // Push changes
     if !run_git_command(&["push", "origin", &branch]) {
         println!("❌ Error: Failed to push changes.");
         exit(1);
     }
 
     println!("✅ Successfully pushed changes to remote repository!");
+}
+
+fn has_staged_changes() -> bool {
+    Command::new("git")
+        .args(["diff", "--cached", "--quiet"])
+        .status()
+        .map(|status| !status.success()) // true = has changes
+        .unwrap_or(false)
 }
 
 fn run_git_command(args: &[&str]) -> bool {
@@ -41,8 +72,6 @@ fn run_git_command(args: &[&str]) -> bool {
 }
 
 fn generate_commit_message() -> String {
-    dotenv().ok();
-
     let api_key = match env::var("GEMINI_API_KEY") {
         Ok(key) => key,
         Err(_) => {
@@ -51,7 +80,6 @@ fn generate_commit_message() -> String {
         }
     };
 
-    // Get the Git diff of staged changes
     let output = Command::new("git")
         .arg("diff")
         .arg("--staged")
@@ -60,18 +88,15 @@ fn generate_commit_message() -> String {
 
     let diff_output = String::from_utf8_lossy(&output.stdout);
 
-    // If there are no changes, return a default message
-    if diff_output.is_empty() {
+    if diff_output.trim().is_empty() {
         return "Minor updates".to_string();
     }
 
-    // Create a prompt for the Gemini API
     let prompt = format!(
         "Generate a clear, concise Git commit message for the following changes:\n\n{}",
         diff_output
     );
 
-    // Send the prompt to the Gemini  
     let client = Client::new();
     let response = client
         .post(&format!(
@@ -108,7 +133,6 @@ fn generate_commit_message() -> String {
     }
 }
 
-// Get the current Git branch
 fn get_current_branch() -> Option<String> {
     let output = Command::new("git")
         .arg("rev-parse")
@@ -118,20 +142,4 @@ fn get_current_branch() -> Option<String> {
         .ok()?;
 
     Some(String::from_utf8_lossy(&output.stdout).trim().to_string())
-}
-
-fn main() {
-    // Load environment variables
-    dotenv().ok();
-
-    if env::var("GEMINI_API_KEY").is_err() {
-        println!("❌ Error: Set GEMINI_API_KEY environment variable.");
-        exit(1);
-    }
-
-    update_commit();
-    
-    println!("test the and the binary  in the code so that it ");
-// fixing and checkking the code
-
 }
