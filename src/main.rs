@@ -143,3 +143,4 @@ fn get_current_branch() -> Option<String> {
 
     Some(String::from_utf8_lossy(&output.stdout).trim().to_string())
 }
+//test
