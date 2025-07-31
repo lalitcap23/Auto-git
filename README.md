@@ -87,3 +87,4 @@ The tool handles common scenarios:
 
 In case of API failures, it falls back to a generic "Updated files" commit message.
 # Test line for auto-git functionality
+# Another test for auto-detection
