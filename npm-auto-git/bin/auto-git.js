@@ -113,12 +113,10 @@ async function main() {
     process.exit(1);
   }
 
-  // Stage all changes
-  log('📁 Staging all changes...', 'yellow');
-  const stageResult = runGitCommand(['add', '.']);
-  if (!stageResult.success) {
+  // Stage changes intelligently (respecting .gitignore)
+  log('📁 Staging changes...', 'yellow');
+  if (!smartAddFiles()) {
     log('❌ Error: Failed to stage files', 'red');
-    log(stageResult.stderr, 'red');
     process.exit(1);
   }
 

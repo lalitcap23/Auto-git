@@ -1,8 +1,8 @@
-use std::process::{Command, exit};
-use std::env;
+use dotenv::dotenv;
 use reqwest::blocking::Client;
 use serde_json::json;
-use dotenv::dotenv;
+use std::env;
+use std::process::{exit, Command};
 
 fn main() {
     dotenv().ok();
@@ -16,8 +16,8 @@ fn main() {
 }
 
 fn update_commit() {
-    // Stage all changes
-    if !run_git_command(&["add", "."]) {
+    // Add only tracked files and respect .gitignore
+    if !smart_add_files() {
         println!("❌ Error: Failed to add files.");
         exit(1);
     }
@@ -48,6 +48,40 @@ fn update_commit() {
     }
 
     println!("✅ Successfully pushed changes to remote repository!");
+}
+
+fn smart_add_files() -> bool {
+    // First, add all currently tracked files that have been modified
+    if !run_git_command(&["add", "-u"]) {
+        return false;
+    }
+
+    // Then add any new files that aren't ignored by .gitignore
+    // This is safer than "git add ." as it respects .gitignore rules
+    let output = Command::new("git")
+        .args(["ls-files", "--others", "--exclude-standard"])
+        .output();
+
+    match output {
+        Ok(result) => {
+            if result.status.success() {
+                let files = String::from_utf8_lossy(&result.stdout);
+                for file in files.lines() {
+                    let file = file.trim();
+                    if !file.is_empty() {
+                        // Add each untracked file individually
+                        run_git_command(&["add", file]);
+                    }
+                }
+            }
+        }
+        Err(_) => {
+            // Fallback to adding all files if the command fails
+            return run_git_command(&["add", "."]);
+        }
+    }
+
+    true
 }
 
 fn has_staged_changes() -> bool {
@@ -86,6 +120,14 @@ fn generate_commit_message() -> String {
         .output()
         .expect("❌ Failed to get Git diff");
 
+    if !output.status.success() {
+        println!(
+            "❌ Error: Failed to get git diff: {}",
+            String::from_utf8_lossy(&output.stderr)
+        );
+        return "Updated files".to_string();
+    }
+
     let diff_output = String::from_utf8_lossy(&output.stdout);
 
     if diff_output.trim().is_empty() {
@@ -93,7 +135,7 @@ fn generate_commit_message() -> String {
     }
 
     let prompt = format!(
-        "Generate a clear, concise Git commit message for the following changes:\n\n{}",
+        "Generate a concise Git commit message (max 50 characters) for these changes. Follow conventional commit format if applicable (feat:, fix:, docs:, etc.). Only return the commit message, nothing else:\n\n{}",
         diff_output
     );
 
@@ -115,19 +157,36 @@ fn generate_commit_message() -> String {
     match response {
         Ok(resp) => {
             if !resp.status().is_success() {
-                println!("❌ Error: Gemini API returned status code {}", resp.status());
+                println!(
+                    "❌ Error: Gemini API returned status code {}",
+                    resp.status()
+                );
                 return "Updated files".to_string();
             }
 
-            let json_resp: serde_json::Value = resp.json().unwrap_or_else(|_| json!({}));
-            json_resp["candidates"]
-                .get(0)
-                .and_then(|c| c["content"]["parts"][0]["text"].as_str())
-                .unwrap_or("Updated files")
-                .to_string()
+            match resp.json::<serde_json::Value>() {
+                Ok(json_resp) => {
+                    if let Some(text) = json_resp["candidates"]
+                        .get(0)
+                        .and_then(|c| c["content"]["parts"][0]["text"].as_str())
+                    {
+                        text.trim().to_string()
+                    } else {
+                        println!("❌ Warning: Unexpected API response format");
+                        "Updated files".to_string()
+                    }
+                }
+                Err(err) => {
+                    println!("❌ Error: Failed to parse API response: {}", err);
+                    "Updated files".to_string()
+                }
+            }
         }
         Err(err) => {
-            println!("❌ Error: Failed to get commit message from Gemini API: {}", err);
+            println!(
+                "❌ Error: Failed to get commit message from Gemini API: {}",
+                err
+            );
             "Updated files".to_string()
         }
     }
@@ -143,4 +202,3 @@ fn get_current_branch() -> Option<String> {
 
     Some(String::from_utf8_lossy(&output.stdout).trim().to_string())
 }
-//test

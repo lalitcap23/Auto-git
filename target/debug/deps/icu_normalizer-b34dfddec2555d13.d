@@ -1,9 +1,0 @@
-/home/lalit/rust/folder/hello/Auto-git/target/debug/deps/libicu_normalizer-b34dfddec2555d13.rmeta: /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/error.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/properties.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/provider.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/uts46.rs
-
-/home/lalit/rust/folder/hello/Auto-git/target/debug/deps/icu_normalizer-b34dfddec2555d13.d: /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/lib.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/error.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/properties.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/provider.rs /home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/uts46.rs
-
-/home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/lib.rs:
-/home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/error.rs:
-/home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/properties.rs:
-/home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/provider.rs:
-/home/lalit/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/icu_normalizer-1.5.0/src/uts46.rs:
