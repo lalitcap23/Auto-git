@@ -52,6 +52,18 @@ function getCurrentBranch() {
   return result.success ? result.output.trim() : 'main';
 }
 
+function smartAddFiles() {
+  // First, add all tracked files that have changes
+  const addResult = runGitCommand(['add', '-u']);
+  if (!addResult.success) {
+    return false;
+  }
+
+  // Then add all untracked files (respecting .gitignore)
+  const addAllResult = runGitCommand(['add', '.']);
+  return addAllResult.success;
+}
+
 async function generateCommitMessage() {
   if (!API_KEY) {
     log('❌ Error: GEMINI_API_KEY environment variable not set', 'red');
