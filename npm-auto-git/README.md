@@ -1,10 +1,16 @@
-# auto-git-ai
+# 🚀 auto-git-ai
 
-🚀 **Automated Git workflow with AI-generated commit messages using Google Gemini API**
+[![npm version](https://img.shields.io/npm/v/auto-git-ai.svg)](https://www.npmjs.com/package/auto-git-ai)
+[![npm downloads](https://img.shields.io/npm/dm/auto-git-ai.svg)](https://www.npmjs.com/package/auto-git-ai)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+**Automated Git workflow with AI-generated commit messages using Google Gemini API**
+
+🔗 **NPM Package**: https://www.npmjs.com/package/auto-git-ai
 
 This CLI tool automates your Git workflow by:
 
-- Staging all changes (`git add .`)
+- Smart staging of changes (respects `.gitignore`)
 - Generating meaningful commit messages using AI
 - Committing with the AI-generated message
 - Pushing to your remote repository
@@ -17,43 +23,30 @@ This CLI tool automates your Git workflow by:
 - **🛡️ Error Handling**: Comprehensive error handling with helpful tips
 - **📝 Conventional Commits**: Follows conventional commit format when applicable
 
-## 📦 Installation
+## � Quick Start
 
-### Global Installation (Recommended)
+1. **Install globally:**
 
-```bash
-npm install -g auto-git-ai
-```
+   ```bash
+   npm install -g auto-git-ai
+   ```
 
-### Local Installation
+2. **Get Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)**
 
-```bash
-npm install auto-git-ai
-```
-
-## 🔧 Setup
-
-1. **Get a Gemini API Key**:
-
-   - Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
-   - Create a new API key
-
-2. **Set Environment Variable**:
-
-   **Option 1: Global Environment Variable**
+3. **Set environment variable:**
 
    ```bash
    export GEMINI_API_KEY="your-api-key-here"
    ```
 
-   **Option 2: Project .env file**
-   Create a `.env` file in your project root:
-
-   ```
-   GEMINI_API_KEY=your-api-key-here
+4. **Use in any Git repository:**
+   ```bash
+   auto-git
    ```
 
 ## 🚀 Usage
+
+### Command Line Interface
 
 Run in any Git repository with a remote configured:
 
@@ -65,7 +58,7 @@ auto-git
 
 ```
 🚀 Auto-git: Automated Git workflow with AI
-📁 Staging all changes...
+📁 Staging changes...
 🤖 Generating commit message with AI...
 📦 Commit message: feat: add user authentication and login validation
 💾 Committing changes...
@@ -73,78 +66,133 @@ auto-git
 ✅ Successfully pushed changes to remote repository!
 ```
 
+### What It Does Automatically
+
+1. **Smart Staging**: Stages modified tracked files and new files (respects `.gitignore`)
+2. **AI Analysis**: Analyzes your changes using Google's Gemini AI
+3. **Commit Generation**: Creates meaningful commit messages following conventional format
+4. **Auto Push**: Commits and pushes to your current branch
+
+## 🔧 Configuration
+
+### Environment Variables
+
+**Required:**
+
+- `GEMINI_API_KEY` - Your Google Gemini API key
+
+**Setup Options:**
+
+**Option 1: Global Environment Variable**
+
+```bash
+export GEMINI_API_KEY="your-api-key-here"
+```
+
+**Option 2: Project .env file**
+Create a `.env` file in your project root:
+
+```
+GEMINI_API_KEY=your-api-key-here
+```
+
 ## 📋 Requirements
 
 - **Node.js**: Version 14.0.0 or higher
 - **Git**: Properly configured with a remote repository
-- **Gemini API Key**: Valid Google Gemini API key
+- **Gemini API Key**: Valid Google Gemini API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
 - **Internet Connection**: Required for AI API calls
 
-## 🔍 What It Does
+## 🎨 AI Commit Messages
 
-1. **Checks Git Repository**: Verifies you're in a valid Git repository
-2. **Stages Changes**: Runs `git add .` to stage all modifications
-3. **Analyzes Changes**: Gets the diff of staged changes
-4. **Generates Commit Message**: Sends diff to Gemini AI for analysis
-5. **Commits**: Creates commit with AI-generated message
-6. **Pushes**: Pushes to the current branch on origin
+The AI generates commit messages with these characteristics:
 
-## ⚠️ Error Handling
+- **Smart Analysis**: Analyzes your actual code changes
+- **Conventional Format**: Uses `feat:`, `fix:`, `docs:`, etc. when applicable
+- **Concise**: Maximum 50 characters for readability
+- **Meaningful**: Describes what the changes actually do
+- **Fallback**: Uses "Updated files" if AI is unavailable
 
-The tool handles common scenarios gracefully:
+## ⚠️ Error Handling & Troubleshooting
 
-- **No Git Repository**: Clear error message if not in a Git repo
-- **No Changes**: Exits gracefully if nothing to commit
-- **No Remote**: Helpful tip to configure remote repository
-- **API Failures**: Falls back to generic commit message
-- **Network Issues**: Timeout handling and error messages
+### Common Issues
 
-## 🎨 Commit Message Format
+**"GEMINI_API_KEY environment variable not set"**
 
-The AI generates commit messages following these guidelines:
+```bash
+export GEMINI_API_KEY="your-api-key-here"
+```
 
-- **Length**: Maximum 50 characters
-- **Format**: Conventional commit format when applicable
-- **Types**: `feat:`, `fix:`, `docs:`, `style:`, `refactor:`, `test:`, `chore:`
+**"Not in a Git repository"**
 
-## 🔐 Security
+- Navigate to a directory containing a Git repository
 
-- API key is read from environment variables only
-- No sensitive data is logged or stored
-- Git credentials use your existing Git configuration
+**"No changes staged. Nothing to commit."**
 
-## 🐛 Troubleshooting
+- Make some changes to your files first
 
-### "GEMINI_API_KEY environment variable not set"
-
-Make sure you've set the API key as described in the setup section.
-
-### "Not in a Git repository"
-
-Navigate to a directory that contains a Git repository.
-
-### "No such remote 'origin'"
-
-Configure a remote repository:
+**"No such remote 'origin'"**
 
 ```bash
 git remote add origin <your-repo-url>
 ```
 
-### "Failed to push changes"
+**"Failed to push changes"**
 
-Ensure you have push permissions to the remote repository.
+- Ensure you have push permissions to the remote repository
+- Check if your branch exists on the remote
+
+## 🔐 Security & Privacy
+
+- ✅ API key is read from environment variables only
+- ✅ No sensitive data is logged or stored locally
+- ✅ Uses your existing Git credentials and configuration
+- ✅ Only sends git diff data to Gemini API for commit message generation
 
 ## 📄 License
 
-MIT License - see LICENSE file for details.
+**MIT License**
+
+```
+MIT License
+
+Copyright (c) 2025 Lalit
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please feel free to:
+
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🔧 Submit pull requests
+- 📖 Improve documentation
 
 ## 🔗 Links
 
-- [Google AI Studio](https://aistudio.google.com/app/apikey) - Get your Gemini API key
-- [Conventional Commits](https://www.conventionalcommits.org/) - Commit message format
-# Test npm version
+- 📦 **NPM Package**: https://www.npmjs.com/package/auto-git-ai
+- 🔑 **Get API Key**: https://aistudio.google.com/app/apikey
+- 📝 **Conventional Commits**: https://www.conventionalcommits.org/
+- 🤖 **Google Gemini AI**: https://ai.google.dev/
+
+---
+
+**Made with ❤️ by Lalit** | **Powered by Google Gemini AI**
