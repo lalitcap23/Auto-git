@@ -39,3 +39,4 @@ package-lock.json
 # Backup files
 *.bak
 *.backup
+target/
