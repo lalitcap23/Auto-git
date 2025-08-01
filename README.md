@@ -43,10 +43,14 @@ AI commit messages • One-command workflow • Smart staging • Conventional c
 ## 🚀 Quick Start
 
 ```bash
-# 1. Install globally (optional)
+# 1. Install 
 npm i auto-git-ai
 # 2. Set API key (get from: https://aistudio.google.com/app/apikey)
+# For Bash or Zsh:
 export GEMINI_API_KEY="your-api-key-here"
+or 
+# For Fish shell:
+set -x GEMINI_API_KEY "your-api-key-here"
 
 # 3. Use directly (no need to install globally)
 npx auto-git-ai
