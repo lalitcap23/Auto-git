@@ -195,15 +195,7 @@ Contributions are welcome! Please feel free to:
 
 <div align="center">
 
-### 📦 **Installation**
 
-**[NPM Package](https://www.npmjs.com/package/auto-git-ai)** • **[Installation Guide](#-quick-start-60-seconds-to-awesome-commits)**
-
-### 🔑 **Setup**
-
-**[Get Gemini API Key](https://aistudio.google.com/app/apikey)** • **[Configuration Guide](#-configuration)**
-
-### � **Documentation**
 
 **[Conventional Commits](https://www.conventionalcommits.org/)** • **[Google Gemini AI](https://ai.google.dev/)**
 
@@ -217,17 +209,10 @@ Contributions are welcome! Please feel free to:
 
 <div align="center">
 
-### 🚀 **Ready to transform your Git workflow?**
 
-```bash
-npm install -g auto-git-ai
-```
-
-**[📦 View on NPM](https://www.npmjs.com/package/auto-git-ai)** • **[🔑 Get API Key](https://aistudio.google.com/app/apikey)**
 
 ---
-
-**Made with ❤️ by Lalit** | **Powered by Google Gemini AI** | **Available on NPM**
+ **Available on NPM**
 
 ⭐ _Star this package on NPM if it helps your workflow!_
 
